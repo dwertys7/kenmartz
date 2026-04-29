@@ -1,0 +1,44 @@
+---
+import { type Locale } from '../i18n/ui';
+import { t } from '../i18n/utils';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const tt = t(locale);
+
+const principles = [
+  { h: tt('studio.p1.h'), b: tt('studio.p1.b'), n: '01' },
+  { h: tt('studio.p2.h'), b: tt('studio.p2.b'), n: '02' },
+  { h: tt('studio.p3.h'), b: tt('studio.p3.b'), n: '03' },
+];
+---
+
+<section class="border-b border-white/10">
+  <div class="mx-auto max-w-screen-2xl px-6 py-20 md:px-10 md:py-28">
+    <h2
+      class="mb-14 font-mono text-xs uppercase tracking-[0.3em] text-(--color-mute)"
+    >
+      <span class="text-(--color-accent)">●</span>
+      {tt('studio.principles.title')}
+    </h2>
+
+    <ol
+      class="grid grid-cols-1 gap-px overflow-hidden border border-white/10 bg-white/10 md:grid-cols-3"
+    >
+      {
+        principles.map(({ h, b, n }) => (
+          <li class="bg-(--color-ink) p-8 md:p-10">
+            <span class="font-mono text-xs text-(--color-accent)">{n}</span>
+            <h3 class="mt-6 font-display text-2xl font-black tracking-tightest md:text-3xl">
+              {h}
+            </h3>
+            <p class="mt-4 text-(--color-paper)/80 text-pretty">{b}</p>
+          </li>
+        ))
+      }
+    </ol>
+  </div>
+</section>

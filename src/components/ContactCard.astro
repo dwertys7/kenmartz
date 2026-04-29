@@ -1,0 +1,42 @@
+---
+import { type Locale } from '../i18n/ui';
+import { t } from '../i18n/utils';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const tt = t(locale);
+
+const email = 'hello@kenmartz.com';
+
+const items = [
+  { label: tt('contact.email.label'), value: email, href: `mailto:${email}` },
+  { label: tt('contact.location.label'), value: 'Tbilisi, Georgia' },
+  { label: tt('contact.hours.label'), value: tt('contact.hours.value') },
+];
+---
+
+<section class="mx-auto max-w-screen-2xl px-6 py-20 md:px-10 md:py-28">
+  <dl class="grid gap-px overflow-hidden border border-white/10 bg-white/10 md:grid-cols-3">
+    {
+      items.map((item) => (
+        <div class="bg-(--color-ink) p-8 md:p-10">
+          <dt class="font-mono text-[10px] uppercase tracking-[0.3em] text-(--color-mute)">
+            {item.label}
+          </dt>
+          <dd class="mt-4 font-display text-xl font-bold tracking-tightest md:text-2xl">
+            {item.href ? (
+              <a href={item.href} class="underline-offset-4 hover:text-(--color-accent) hover:underline">
+                {item.value}
+              </a>
+            ) : (
+              item.value
+            )}
+          </dd>
+        </div>
+      ))
+    }
+  </dl>
+</section>

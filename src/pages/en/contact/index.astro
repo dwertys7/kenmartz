@@ -1,0 +1,19 @@
+---
+import Base from '../../../layouts/Base.astro';
+import PageHero from '../../../components/PageHero.astro';
+import ContactCard from '../../../components/ContactCard.astro';
+import { t } from '../../../i18n/utils';
+
+const locale = 'en' as const;
+const tt = t(locale);
+---
+
+<Base
+  locale={locale}
+  title={`${tt('contact.title')} — kenmartz`}
+  description={tt('contact.lede')}
+  canonicalPath="/contact/"
+>
+  <PageHero eyebrow="hello@" title={tt('contact.title')} lede={tt('contact.lede')} />
+  <ContactCard locale={locale} />
+</Base>

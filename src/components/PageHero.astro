@@ -1,0 +1,35 @@
+---
+interface Props {
+  eyebrow?: string;
+  title: string;
+  lede?: string;
+}
+
+const { eyebrow, title, lede } = Astro.props;
+---
+
+<section class="border-b border-white/10">
+  <div class="mx-auto grid max-w-screen-2xl gap-8 px-6 py-20 md:grid-cols-12 md:gap-12 md:px-10 md:py-28">
+    <div class="md:col-span-8">
+      {
+        eyebrow && (
+          <p class="mb-6 font-mono text-xs uppercase tracking-[0.3em] text-(--color-mute)">
+            <span class="text-(--color-accent)">●</span> {eyebrow}
+          </p>
+        )
+      }
+      <h1
+        class="font-display text-5xl font-black leading-[0.95] tracking-tightest text-balance md:text-7xl"
+      >
+        {title}<span class="text-(--color-accent)">.</span>
+      </h1>
+    </div>
+    {
+      lede && (
+        <div class="md:col-span-4 md:self-end">
+          <p class="text-lg text-(--color-paper)/85 md:text-xl text-pretty">{lede}</p>
+        </div>
+      )
+    }
+  </div>
+</section>
