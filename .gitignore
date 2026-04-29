@@ -31,6 +31,7 @@ pnpm-debug.log*
 # source skill repos (vendored as reference, not part of the site)
 /skills-uiux/
 /skills-vercel/
+/skills-a11y/
 
 # claude local settings
 .claude/settings.local.json
