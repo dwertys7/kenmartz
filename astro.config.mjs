@@ -21,7 +21,6 @@ export default defineConfig({
     },
     fallback: {
       ru: 'en',
-      ka: 'en',
     },
   },
   integrations: [sitemap()],
