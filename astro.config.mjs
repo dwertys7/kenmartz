@@ -7,7 +7,7 @@ const SITE = process.env.PUBLIC_SITE_URL ?? 'https://kenmartz.com';
 
 export default defineConfig({
   site: SITE,
-  output: 'hybrid',
+  output: 'static',
   adapter: vercel({
     webAnalytics: { enabled: true },
     imageService: true,
