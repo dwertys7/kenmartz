@@ -1,0 +1,34 @@
+---
+import { type Locale } from '../i18n/ui';
+import { t, localizedPath } from '../i18n/utils';
+import LocaleSwitcher from './LocaleSwitcher.astro';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const tt = t(locale);
+---
+
+<header class="border-b border-white/10">
+  <div class="mx-auto flex max-w-screen-2xl items-center justify-between gap-8 px-6 py-5 md:px-10">
+    <a
+      href={localizedPath(locale)}
+      class="font-display text-xl font-black tracking-tightest"
+      aria-label="kenmartz — home"
+    >
+      kenmartz<span class="text-(--color-accent)">.</span>
+    </a>
+
+    <nav aria-label="Primary" class="hidden md:block">
+      <ul class="flex items-center gap-8 text-sm">
+        <li><a href={localizedPath(locale, '/work/')} class="hover:text-(--color-accent)">{tt('nav.work')}</a></li>
+        <li><a href={localizedPath(locale, '/studio/')} class="hover:text-(--color-accent)">{tt('nav.studio')}</a></li>
+        <li><a href={localizedPath(locale, '/contact/')} class="hover:text-(--color-accent)">{tt('nav.contact')}</a></li>
+      </ul>
+    </nav>
+
+    <LocaleSwitcher current={locale} />
+  </div>
+</header>

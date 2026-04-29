@@ -1,0 +1,77 @@
+---
+import { type Locale } from '../i18n/ui';
+import { t, localizedPath } from '../i18n/utils';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const tt = t(locale);
+const titleLines = tt('home.title').split('\n');
+---
+
+<section class="relative overflow-hidden">
+  <div
+    aria-hidden="true"
+    class="pointer-events-none absolute inset-0 [background:radial-gradient(60%_60%_at_75%_25%,oklch(0.78_0.20_95/0.12),transparent_70%)]"
+  >
+  </div>
+
+  <div class="mx-auto grid max-w-screen-2xl gap-10 px-6 py-20 md:grid-cols-12 md:gap-12 md:px-10 md:py-32">
+    <div class="md:col-span-9">
+      <p class="mb-8 font-mono text-xs uppercase tracking-[0.3em] text-(--color-mute)">
+        <span class="text-(--color-accent)">●</span>
+        {tt('home.eyebrow')} · est. 2025
+      </p>
+
+      <h1
+        class="font-display text-5xl font-black leading-[0.92] tracking-tightest text-balance md:text-7xl lg:text-[clamp(3.5rem,9vw,9rem)]"
+      >
+        {
+          titleLines.map((line, i) => (
+            <span class="block">
+              {line}
+              {i === titleLines.length - 1 && (
+                <span class="text-(--color-accent)">_</span>
+              )}
+            </span>
+          ))
+        }
+      </h1>
+    </div>
+
+    <div class="flex flex-col justify-end gap-8 md:col-span-3">
+      <p class="text-lg text-(--color-paper)/80 md:text-xl text-pretty">
+        {tt('home.lede')}
+      </p>
+
+      <div class="flex flex-wrap items-center gap-3">
+        <a
+          href={localizedPath(locale, '/contact/')}
+          class="inline-flex items-center gap-2 rounded-full bg-(--color-accent) px-5 py-3 text-sm font-semibold text-(--color-ink) transition hover:opacity-90"
+        >
+          {tt('home.cta')}
+          <span aria-hidden="true">→</span>
+        </a>
+
+        <a
+          href={localizedPath(locale, '/work/')}
+          class="inline-flex items-center gap-2 rounded-full border border-white/20 px-5 py-3 text-sm transition hover:border-(--color-accent)"
+        >
+          {tt('home.cta.secondary')}
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <div
+    aria-hidden="true"
+    class="border-t border-white/10 font-mono text-[10px] uppercase tracking-[0.3em] text-(--color-mute)"
+  >
+    <div class="mx-auto flex max-w-screen-2xl items-center justify-between px-6 py-3 md:px-10">
+      <span>N 41.7° E 44.8°</span>
+      <span>v0.1 · build {new Date().getFullYear()}</span>
+    </div>
+  </div>
+</section>
